@@ -54,10 +54,10 @@ function addLine($line, $cat)
 }
 
 if(!isset($_GET['iterateFrom'])){
+    /*
     LudoDB::getInstance()->query("drop table dictionary");
     LudoDB::getInstance()->query("create table dictionary(id int auto_increment not null primary key, word varchar(255),word_length int, category varchar(15))");
-    LudoDB::getInstance()->query("delete from dictionary");
-    LudoDB::getInstance()->query("commit");
+    */
 }
 
 
@@ -94,6 +94,7 @@ function importFile($file, $cat){
 
 $cat = isset($_GET['cat']) ? $_GET['cat'] : 'no_bm';
 
+# LudoDB::getInstance()->query("delete from dictionary where category=?", $cat);
 
 switch($cat){
     case 'no_nn':
@@ -104,6 +105,8 @@ switch($cat){
         break;
 
 }
+
+
 
 
 LudoDB::getInstance()->query("create index dic_len on dictionary(word_length)");
